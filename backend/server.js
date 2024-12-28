@@ -13,7 +13,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: ["https://amanscircle.netlify.app", "http://localhost:5173"],
     methods: ["GET", "POST"],
   },
 });
@@ -26,7 +26,7 @@ mongoose
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["https://amanscircle.netlify.app", "http://localhost:5173"],
   })
 );
 app.use(express.json());
