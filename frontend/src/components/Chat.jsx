@@ -58,7 +58,7 @@ function Chat({ socket, currentUser }) {
         // Check if this message already exists (real ID from the server)
         const isDuplicate = prev.some((m) => m._id === message._id);
         if (isDuplicate) {
-          return prev; // Avoid duplicates
+          return prev;
         }
 
         // Check for and replace optimistic message
@@ -67,12 +67,12 @@ function Chat({ socket, currentUser }) {
             m.sender === message.sender &&
             m.receiver === message.receiver &&
             m.content === message.content &&
-            m._id.toString().startsWith("temp") // Match temporary ID
+            m._id.toString().startsWith("temp")
         );
 
         if (optimisticMessageIndex !== -1) {
           const updatedMessages = [...prev];
-          updatedMessages[optimisticMessageIndex] = message; // Replace with server version
+          updatedMessages[optimisticMessageIndex] = message;
           return updatedMessages;
         }
 
