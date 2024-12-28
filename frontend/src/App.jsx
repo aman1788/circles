@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import Chat from "./components/Chat";
 import Login from "./components/Login";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://circles.up.railway.app");
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);

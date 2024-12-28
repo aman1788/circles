@@ -19,7 +19,7 @@ function Chat({ socket, currentUser }) {
 
   // Fetch all users and their statuses
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://circles.up.railway.app/users")
       .then((res) => res.json())
       .then((users) => {
         const otherUsers = users.filter((user) => user._id !== currentUser._id);
@@ -40,7 +40,9 @@ function Chat({ socket, currentUser }) {
   // Fetch chat history
   useEffect(() => {
     if (chatPartner) {
-      fetch(`http://localhost:5000/messages/${currentUser._id}/${chatPartner}`)
+      fetch(
+        `https://circles.up.railway.app/messages/${currentUser._id}/${chatPartner}`
+      )
         .then((res) => res.json())
         .then((history) => {
           setMessages(history);
@@ -120,7 +122,7 @@ function Chat({ socket, currentUser }) {
       for (const user of allUsers) {
         try {
           const response = await fetch(
-            `http://localhost:5000/messages/${currentUser._id}/${user._id}`
+            `https://circles.up.railway.app/messages/${currentUser._id}/${user._id}`
           );
           const messages = await response.json();
           if (messages.length > 0) {
